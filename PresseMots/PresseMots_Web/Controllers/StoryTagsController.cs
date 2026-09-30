@@ -19,8 +19,8 @@ namespace PresseMots.Controllers
             _context = context;
         }
 
-        /*
-  
+
+
         public async Task<IActionResult> Create(int storyId)
         {
             var story = await _context.Stories.FirstOrDefaultAsync(m => m.Id == storyId);
@@ -32,7 +32,7 @@ namespace PresseMots.Controllers
 
 
             ViewData["TagId"] = new SelectList(_context.Tags, "Id", "Name");
-            return View();-- METTRE le modèle adéquat! Pour la correspondance, utilisez storyId pour la première relation et la liste pour la deuxième. 
+            return View(); /*--METTRE le modèle adéquat! Pour la correspondance, utilisez storyId pour la première relation et la liste pour la deuxième. */
         }
 
 
@@ -44,8 +44,8 @@ namespace PresseMots.Controllers
             {
                 _context.Add(storyTag);
                 await _context.SaveChangesAsync();
-        //On revient vers l'article.
-                return RedirectToAction("Index", "Stories", new { Id = storyTag.StoryId});
+                //On revient vers l'article.
+                return RedirectToAction("Index", "Stories", new { Id = storyTag.StoryId });
             }
 
             var story = await _context.Stories.FirstOrDefaultAsync(m => m.Id == storyTag.StoryId);
@@ -59,9 +59,9 @@ namespace PresseMots.Controllers
             return View(storyTag);
         }
 
-      
 
-      
+
+
 
 
         public async Task<IActionResult> Delete(int? id)
@@ -95,11 +95,11 @@ namespace PresseMots.Controllers
             {
                 _context.StoryTags.Remove(storyTag);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index), "Stories", new { Id=storyId});
+            return RedirectToAction(nameof(Index), "Stories", new { Id = storyId });
         }
 
-  */
+
     }
 }

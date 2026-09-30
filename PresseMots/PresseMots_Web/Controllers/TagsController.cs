@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PresseMots.Models;
 using PresseMots.Models.Data;
 
 namespace PresseMots.Controllers
@@ -17,7 +20,8 @@ namespace PresseMots.Controllers
         // GET: Tags
         public async Task<IActionResult> Index()
         {
-              return View(/*...*/);
+            List<Tag> Tags = _context.Tags.ToList();
+              return View(Tags);
         }
 
         // GET: Tags/Create
@@ -31,21 +35,23 @@ namespace PresseMots.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Object model/*[Bind("Id,Name")] Tag tag*/)
+        public async Task<IActionResult> Create(Object model,[Bind("Id,Name")] Tag tag)
         {
             if (ModelState.IsValid)
             {
-                /*?*/
+                _context.Tags.Add(tag);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
-            return View(/*...*/);
+            return View(tag);
         }
 
         // GET: Tags/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-           /*..?*/
-
-            return View(/*..*/);
+            /*..?*/
+            Tag tag = _context.Tags.FirstOrDefault(t => t.Id == id);
+            return View(tag);
         }
 
         // POST: Tags/Delete/5
@@ -54,7 +60,10 @@ namespace PresseMots.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             /*...*/
+            Tag tag = _context.Tags.FirstOrDefault(t => t.Id == id);
 
+            _context.Tags.Remove(tag);
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }

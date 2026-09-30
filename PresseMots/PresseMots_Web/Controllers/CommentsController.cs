@@ -38,12 +38,14 @@ namespace PresseMots.Controllers
 
             // À FAIRE : Utilisez un VM pour retourner les données de wordCount, storyTitle, shortStory, storyId et comments
 
-            ViewBag.WordCount = wordCount;
-            ViewBag.StoryTitle = title;
-            ViewBag.ShortStory = shortStory;
-            ViewBag.StoryId = storyId;
+            CommentVM commentVM = new CommentVM();
+            commentVM.Comments = comments;
+            commentVM.Wordcount = wordCount;
+            commentVM.Storytitle = title;
+            commentVM.ShortStory = shortStory;
+            commentVM.StoryId = storyId;
             
-            return View(comments);
+            return View(commentVM);
         }
 
  

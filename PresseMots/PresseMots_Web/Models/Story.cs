@@ -17,16 +17,17 @@ namespace PresseMots.Models
             Likes = new List<Like>();
             Shares = new List<Share>();
             Comments = new List<Comment>();
+            StoryTags = new List<StoryTag>();
 
         }
         public int Id { get; set; }
         public string Title { get; set; }
-
+        [MinLength(25)]
+        [MaxLength(10000)]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
-        [NotMapped]
-        public IList<string> Tags { get; set; } = new List<string>();
+        public virtual IList<StoryTag> StoryTags { get; set; } 
         public DateTime CreationTime { get; set; }
         public DateTime? LastEditTime { get; set; }
         public DateTime? PublishTime { get; set; }
